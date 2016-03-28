@@ -2,6 +2,7 @@
 
 var path = require("path");
 var webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -11,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: process.env.PUBLIC_PATH || "/dist/"
+    publicPath: process.env.PUBLIC_PATH || '/'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -24,6 +25,10 @@ module.exports = {
       compressor: {
         warnings: false
       }
+    }),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: 'body'
     })
   ],
   module: {

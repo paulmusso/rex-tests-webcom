@@ -2,22 +2,28 @@
 
 var path = require("path");
 var webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: "source-map",
   entry: [
-    "webpack-hot-middleware/client",
+    "./hotReload",
+    "webpack/hot/dev-server",
     "babel-polyfill",
     "./index"
   ],
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: process.env.PUBLIC_PATH || "/dist/"
+    publicPath: process.env.PUBLIC_PATH || '/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      template: './index.html',
+      inject: 'body'
+    })
   ],
   module: {
     loaders: [{
