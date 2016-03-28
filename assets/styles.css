@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'HelvNeue35';
+  src: url("./HelvNeue35_W1G.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'HelvNeue45';
+  src: url("./HelvNeue45_W1G.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a, a:visited {
+	color: #FF6600;
+}
+
+a:hover {
+	text-decoration: underline !important;
+}

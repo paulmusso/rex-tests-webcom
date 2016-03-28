@@ -1,0 +1,22 @@
+it('listening allowed with read rights set to true', (done) => {
+    const rules = {
+        '.read': true
+    };
+    let cb = jasmine.createSpyObj('cb', ['onCancel', 'onOk']);
+
+    setRules(rules, testNs).then(() => {
+        return new Promise((resolve) => {
+            ref.on('value', () => {
+                cb.onOk();
+                resolve();
+            }, (err) => {
+                cb.onCancel();
+                resolve(err);
+            });
+        });
+    }).then(() => {
+        expect(cb.onCancel).not.toHaveBeenCalled();
+        expect(cb.onOk).toHaveBeenCalled();
+        done();
+    });
+});
