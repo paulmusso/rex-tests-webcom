@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.jsx .",
     "deploy": "npm run clean & npm run build && surge -p .",
     "serve": "cross-env NODE_ENV=production webpack-dev-server --host 0.0.0.0 --config webpack.config.production.js --port 3000",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --port 3000"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --port 3000 --history-api-fallback"
   },
   "author": "Paul Musso",
   "license": "MIT",
@@ -17,7 +17,8 @@
     "normalize.css": "3.0.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "spectacle": "^1.0.0"
+    "spectacle": "^1.0.0",
+    "spectacle-code-slide": "^0.1.9"
   },
   "devDependencies": {
     "autoprefixer-core": "^6.0.1",

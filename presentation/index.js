@@ -22,6 +22,8 @@ import {
   Text
 } from "spectacle";
 
+import CodeSlide from 'spectacle-code-slide';
+
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
@@ -75,12 +77,18 @@ export default class Presentation extends React.Component {
               <ListItem>Code coverage</ListItem>
             </List>
           </Slide>
-          <Slide bgColor="#59C1EB">
-            <CodePane
-              lang="javascript"
-              source={require("raw!../assets/sdk.example")}
-            />
-          </Slide>
+          <CodeSlide
+              lang="jsx"
+              transition={[]}
+              code={require("raw!../assets/sdk.example")}
+              ranges={[
+              { loc: [0, 22], title: "Test async avec Jasmine" },
+              { loc: [0, 1], note: "Déclaration du test, avec la cb 'done()' à appeler quand le test est fini (test asynchrone)"},
+              { loc: [4, 5], note: "Création d'un spy avec 2 fonctions" },
+              { loc: [8, 15], note: "Appel des fonctions du spy" },
+              { loc: [17, 19], note: "Test si la fonction 'onOk()' a bien été appelée et pas 'onCancel()'" },
+              { loc: [19, 20], note: "Appel de la callback 'done()' pour terminer le test" }
+          ]} />
           <Slide bgColor="#E0E0E0">
             <Heading size={2} caps fit textColor="tertiary">Tests sur un portail Web</Heading>
             <Heading size={2} caps fit textFont="heading">graphiques</Heading>
@@ -111,14 +119,27 @@ export default class Presentation extends React.Component {
               </Fill>
             </Layout>
           </Slide>
-          
-          <Slide bgColor="#B79CE0">
-            <CodePane
-              lang="javascript"
-              source={require("raw!../assets/webdriverio.example")}
-            />
-          </Slide>
+          <CodeSlide
+              lang="jsx"
+              transition={[]}
+              code={require("raw!../assets/webdriverio.example")}
+              ranges={[
+              { loc: [0, 45], title: "Test avec Webdriver I/O" },
+              { loc: [0, 2], note: "Import de fichiers propres aux projets"},
+              { loc: [3, 4], note: "Déclaration de la suite de tests"},
+              { loc: [4, 7], note: "Fonction appelée au début de la suite" },
+              { loc: [7, 10], note: "Fonction appelée à la fin de la suite" },
+              { loc: [10, 13], note: "Fonction appelée avant chaque test" },
+              { loc: [11, 12], note: "Lance un nouvel onglet et attend bien qu'il soit là" },
+              { loc: [13, 16], note: "Fonction appelée après chaque test" },
+              { loc: [14, 15], note: "Ferme l'onglet et attend la confirmation" },
+              { loc: [16, 17], note: "Déclaration d'un test, attention ne pas oublier l'* après function" },
+              { loc: [17, 18], note: "Appel d'un scénario défini au préalable, authentification pour l'exemple" },
+              { loc: [17, 18], note: "Le mot clé 'yield' évite l'usage de callbacks. La ligne suivante n'est exécutée qu'après que la promise renvoyée par browser.signIn() soit résolue" },
+              { loc: [19, 23], note: "Attente qu'un élément existe, définit une valeur dans un champ et click sur un bouton"},
+              { loc: [23, 31], note: "Attente qu'un élément existe, clicl sur un bouton et atttente qu'un élément disparaisse"}
 
+          ]} />
           <Slide bgImage={images.tools} bgDarken={0.75}>
             <Heading size={2} textColor='secondary' caps fit>Autres tests</Heading>
             <List textColor='primary'>
@@ -127,20 +148,28 @@ export default class Presentation extends React.Component {
               <ListItem><Link href="https://github.com/webcom-components/reach">Expérimentation</Link> sur <Link href="http://karma-runner.github.io/0.13/index.html">Karma</Link> / <Link href="https://github.com/jasmine/jasmine">Jasmine</Link> avec <Link href="https://saucelabs.com/">SauceLabs</Link></ListItem>
             </List>
           </Slide>
-          <Slide bgColor="#59C1EB">
-            <Text textSize="2em" textColor='primary'>Tests unitaires sur logique métier</Text>
-            <CodePane
+          <CodeSlide
               lang="jsx"
-              source={require("raw!../assets/redux.example")}
-            />
-          </Slide>
-          <Slide bgColor="#B79CE0">
-            <Text textSize="2em" textColor='primary'>Tests unitaires sur les composants</Text>
-            <CodePane
+              transition={[]}
+              code={require("raw!../assets/redux.example")}
+              ranges={[
+              { loc: [0, 27], title: "Tests sur la logique métier" },
+              { loc: [1, 13], note: "Initialisation de l'état" },
+              { loc: [16, 19], note: "Test que le user a bien été rajouté" },
+              { loc: [20, 23], note: "Test que le user a bien été supprimé" }
+            ]} />
+          <CodeSlide
               lang="jsx"
-              source={require("raw!../assets/react.example")}
-            />
-          </Slide>
+              transition={[]}
+              code={require("raw!../assets/react.example")}
+              ranges={[
+              { loc: [0, 28], title: "Tests sur les composants" },
+              { loc: [0, 8], note: "Instanciation des composants (1/2)" },
+              { loc: [8, 15], note: "Instanciation des composants (2/2)" },
+              { loc: [16, 20], note: "Test si 1er composant contient bien 2 Gauges" },
+              { loc: [21, 24], note: "Contient un élément avec la classe 'manage' ?" },
+              { loc: [25, 28], note: "Contient un élément avec la classe 'remove' ?" }
+            ]} />
         </Deck>
       </Spectacle>
     );

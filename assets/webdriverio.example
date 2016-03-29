@@ -2,30 +2,43 @@ import provisioning from '../util/provisioning';
 import pageObjects from '../util/pageObjects';
 
 describe('Namespaces', () => {
-	beforeAll((done) => {
-		provisioning.createUser(config.credentials).then(done);
-	});
-	afterAll((done) => {
-		provisioning.deleteUser(config.credentials).then(done);
-	});
-	beforeEach(function*() {
-		yield browser.init();
-	});
-	afterEach(function*() {
-		yield browser.end();
-	});
-	it('should create namespace', function *() {
-		yield browser.signIn();
+ beforeAll((done) => {
+  provisioning.createUser(config.credentials).then(done);
+ });
+ afterAll((done) => {
+  provisioning.deleteUser(config.credentials).then(done);
+ });
+ beforeEach(function*() {
+  yield browser.init();
+ });
+ afterEach(function*() {
+  yield browser.end();
+ });
+ it('should create namespace', function *() {
+  yield browser.signIn();
 
-		// Add new namespace
-		yield browser.waitForExist(pageObjects.dashboard.txtBoxAddNs, config.timeout);
-		yield browser.setValue(pageObjects.dashboard.txtBoxAddNs, testNs);
-		yield browser.click(pageObjects.dashboard.btnAddNs);
-		// Check if namespace card appeared
-		yield browser.waitForExist(`${pageObjects.dashboard.nsCardPartial}${testNs}`, config.timeout);
+  // Add new namespace
+  yield browser.waitForExist(pageObjects.dashboard.txtBoxAddNs, config.timeout);
+  yield browser.setValue(pageObjects.dashboard.txtBoxAddNs, testNs);
+  yield browser.click(pageObjects.dashboard.btnAddNs);
+  // Check if namespace card appeared
+  yield browser.waitForExist(`${pageObjects.dashboard.nsCardPartial}${testNs}`, config.timeout);
 
-		// Delete namespace
-		yield browser.clickConfirm(`${pageObjects.dashboard.nsCardPartial}${testNs} .remove`);
-		// Check if namespace card disappeared
-		yield browser.waitForExist(`${pageObjects.dashboard.nsCardPartial}${testNs}`, config.timeout, true);
-	});
+  // Delete namespace
+  yield browser.clickConfirm(`${pageObjects.dashboard.nsCardPartial}${testNs} .remove`);
+  // Check if namespace card disappeared
+  yield browser.waitForExist(`${pageObjects.dashboard.nsCardPartial}${testNs}`, config.timeout, true);
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+ 
