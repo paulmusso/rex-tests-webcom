@@ -1,0 +1,28 @@
+import Gauge from 'components/Gauge';
+
+this.ownerComponent = TestUtils.renderIntoDocument(
+	<Namespace 
+		ns={this.nsName} 
+		meta={metaOwner} 
+		stats={stats} 
+		getStats={getStats} />;
+
+this.collabComponent = TestUtils.renderIntoDocument(
+	<Namespace 
+		ns={this.nsName} 
+		meta={metaCollab} 
+		stats={stats} 
+		getStats={getStats} />);
+
+it("has two Gauges", () => {
+	let gauges = this.TestUtils.scryRenderedComponentsWithType(this.ownerComponent, Gauge);
+	expect(gauges.length).toEqual(2);
+});
+
+it("has a button to manage the namespace", () => {
+	this.TestUtils.findRenderedDOMComponentWithClass(this.collabComponent, "manage");
+});
+
+it("has a button to remove the namespace if the user is owner of the namespace", () => {
+	this.TestUtils.findRenderedDOMComponentWithClass(this.ownerComponent, "remove");
+});

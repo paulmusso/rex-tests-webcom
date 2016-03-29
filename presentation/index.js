@@ -122,9 +122,24 @@ export default class Presentation extends React.Component {
           <Slide bgImage={images.tools} bgDarken={0.75}>
             <Heading size={2} textColor='secondary' caps fit>Autres tests</Heading>
             <List textColor='primary'>
+              <ListItem>Quelques tests unitaires sur un portail web avec <Link href="https://github.com/reactjs/redux">Redux</Link>, <Link href="https://github.com/yelouafi/redux-saga">Redux-Saga</Link>, <Link href="http://karma-runner.github.io/0.13/index.html">Karma</Link> / <Link href="https://github.com/jasmine/jasmine">Jasmine</Link> et <Link href="http://phantomjs.org/">PhantomJS</Link></ListItem>
               <ListItem>Quelques <Link href="https://github.com/webcom-components/visio-sample">tests</Link> avec <Link href="https://github.com/mochajs/mocha">Mocha</Link> sur <Link href="https://travis-ci.org">Travis</Link></ListItem>
               <ListItem><Link href="https://github.com/webcom-components/reach">Expérimentation</Link> sur <Link href="http://karma-runner.github.io/0.13/index.html">Karma</Link> / <Link href="https://github.com/jasmine/jasmine">Jasmine</Link> avec <Link href="https://saucelabs.com/">SauceLabs</Link></ListItem>
             </List>
+          </Slide>
+          <Slide bgColor="#59C1EB">
+            <Text textSize="2em" textColor='primary'>Tests unitaires sur logique métier</Text>
+            <CodePane
+              lang="jsx"
+              source={require("raw!../assets/redux.example")}
+            />
+          </Slide>
+          <Slide bgColor="#B79CE0">
+            <Text textSize="2em" textColor='primary'>Tests unitaires sur les composants</Text>
+            <CodePane
+              lang="jsx"
+              source={require("raw!../assets/react.example")}
+            />
           </Slide>
         </Deck>
       </Spectacle>

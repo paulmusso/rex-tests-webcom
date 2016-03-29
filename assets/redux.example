@@ -1,0 +1,23 @@
+it('should handle TOGGLE_USER', () => {
+	const initState = {
+		main: {
+			users: {
+				1:{
+					id:1,
+					namespaces:{
+						test:{baseName:"test"},
+						test1:{baseName:"test1"}
+					}
+				},
+				2: {
+					id:2
+				}
+			}, usersSelected: [2]}}
+	let state = initState;
+	// select a user
+	state = reducer(state, actions.toggleUserSelection(1))
+	expect(state.main.usersSelected).toEqual([2,1])
+	// deselect a user
+	state = reducer(state, actions.toggleUserSelection(2))
+	expect(state.main.usersSelected).toEqual([1])
+})
